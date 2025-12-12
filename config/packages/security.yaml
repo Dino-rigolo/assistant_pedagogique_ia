@@ -12,15 +12,15 @@ security:
                 property: email          # Utilise email comme identifiant unique
     firewalls:
         dev:
-            pattern: ^/(_profiler|_wdt|assets|build)/
+            # pattern: ^/(_profiler|_wdt|assets|build)/
+            pattern: ^/(_profiler|_wdt|assets|build|auth\.html|dashboard\.html)/
             security: false
 
         # Route publique : login (sans authentification requise)
         login:
             pattern: ^/api/login
             stateless: true
-            custom_authenticators:
-                - App\Security\LoginAuthenticator  # À créer
+            security: false 
 
         # Route publique : register (sans authentification requise)
         register:
@@ -29,18 +29,10 @@ security:
             security: false
 
         main:
-            # lazy: true
-            # provider: users_in_memory ne convient pas avec jwt
             stateless: true  # Important pour API REST (pas de session)
             provider: app_user_provider
-            custom_authenticators:
-                - lexik_jwt_authentication.jwt_token_authenticator  # Validateur JWT
-
-            # Activate different ways to authenticate:
-            # https://symfony.com/doc/current/security.html#the-firewall
-
-            # https://symfony.com/doc/current/security/impersonating_user.html
-            # switch_user: true
+            http_basic:
+                realm: 'API'
 
     # Note: Only the *first* matching rule is applied
        # 🔧 MODIFICATION 3 : Contrôle d'accès (qui peut accéder à quoi)

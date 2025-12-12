@@ -2,11 +2,12 @@
 
 namespace App\Entity;
 use Symfony\Component\Security\Core\User\UserInterface; // Importe l'interface UserInterface
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;// Importe l'interface PasswordAuthenticatedUserInterface
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
-class User implements UserInterface
+class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
