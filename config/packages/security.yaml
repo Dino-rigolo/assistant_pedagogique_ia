@@ -5,16 +5,36 @@ security:
 
     # https://symfony.com/doc/current/security.html#loading-the-user-the-user-provider
     providers:
-        users_in_memory: { memory: null }
-
+        # users_in_memory: { memory: null } Pas de vrai utilisateurs donc a modifier
+         app_user_provider:  # Nouveau nom : provider qui lit la DB
+            entity:
+                class: App\Entity\User  # Pointe vers ton entité User
+                property: email          # Utilise email comme identifiant unique
     firewalls:
         dev:
-            # Ensure dev tools and static assets are always allowed
             pattern: ^/(_profiler|_wdt|assets|build)/
             security: false
+
+        # Route publique : login (sans authentification requise)
+        login:
+            pattern: ^/api/login
+            stateless: true
+            custom_authenticators:
+                - App\Security\LoginAuthenticator  # À créer
+
+        # Route publique : register (sans authentification requise)
+        register:
+            pattern: ^/api/register
+            stateless: true
+            security: false
+
         main:
-            lazy: true
-            provider: users_in_memory
+            # lazy: true
+            # provider: users_in_memory ne convient pas avec jwt
+            stateless: true  # Important pour API REST (pas de session)
+            provider: app_user_provider
+            custom_authenticators:
+                - lexik_jwt_authentication.jwt_token_authenticator  # Validateur JWT
 
             # Activate different ways to authenticate:
             # https://symfony.com/doc/current/security.html#the-firewall
@@ -23,9 +43,20 @@ security:
             # switch_user: true
 
     # Note: Only the *first* matching rule is applied
+       # 🔧 MODIFICATION 3 : Contrôle d'accès (qui peut accéder à quoi)
     access_control:
-        # - { path: ^/admin, roles: ROLE_ADMIN }
-        # - { path: ^/profile, roles: ROLE_USER }
+        # Routes publiques
+        - { path: ^/api/login, roles: PUBLIC_ACCESS }
+        - { path: ^/api/register, roles: PUBLIC_ACCESS }
+        - { path: ^/api/docs, roles: PUBLIC_ACCESS }
+        - { path: ^/api$, roles: PUBLIC_ACCESS }
+
+        # Routes protégées : doivent avoir un JWT valide
+        - { path: ^/api/syllabuses, roles: ROLE_TEACHER }
+        - { path: ^/api/course_plans, roles: ROLE_TEACHER }
+        - { path: ^/api/sessions, roles: ROLE_TEACHER }
+        - { path: ^/api/ai/, roles: ROLE_TEACHER }
+        - { path: ^/api, roles: ROLE_TEACHER }
 
 when@test:
     security:
