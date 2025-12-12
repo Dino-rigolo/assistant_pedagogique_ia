@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Entity;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Symfony\Component\Security\Core\User\UserInterface; // Importe l'interface UserInterface
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;// Importe l'interface PasswordAuthenticatedUserInterface
 use App\Repository\UserRepository;
@@ -22,6 +24,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column]
     private array $roles = [];
+
+    /**
+     * @var Collection<int, Syllabus>
+     */
+    #[ORM\OneToMany(targetEntity: Syllabus::class, mappedBy: 'owner', orphanRemoval: true)]
+    private Collection $syllabi;
+
+    public function __construct()
+    {
+        $this->syllabi = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -68,5 +81,35 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function getUserIdentifier(): string
     {
         return $this->email;  // Identifiant unique
+    }
+
+    /**
+     * @return Collection<int, Syllabus>
+     */
+    public function getSyllabi(): Collection
+    {
+        return $this->syllabi;
+    }
+
+    public function addSyllabus(Syllabus $syllabus): static
+    {
+        if (!$this->syllabi->contains($syllabus)) {
+            $this->syllabi->add($syllabus);
+            $syllabus->setOwner($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSyllabus(Syllabus $syllabus): static
+    {
+        if ($this->syllabi->removeElement($syllabus)) {
+            // set the owning side to null (unless already changed)
+            if ($syllabus->getOwner() === $this) {
+                $syllabus->setOwner(null);
+            }
+        }
+
+        return $this;
     }
 }
