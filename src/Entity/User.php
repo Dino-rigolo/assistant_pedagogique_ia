@@ -1,12 +1,12 @@
 <?php
 
 namespace App\Entity;
-
+use Symfony\Component\Security\Core\User\UserInterface; // Importe l'interface UserInterface
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
-class User
+class User implements UserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -61,5 +61,11 @@ class User
         $this->roles = $roles;
 
         return $this;
+    }
+    
+    // Implémentation de la méthode getUserIdentifier() requise par UserInterface
+    public function getUserIdentifier(): string
+    {
+        return $this->email;  // Identifiant unique
     }
 }
