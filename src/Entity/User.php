@@ -31,9 +31,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(targetEntity: Syllabus::class, mappedBy: 'owner', orphanRemoval: true)]
     private Collection $syllabi;
 
+    /**
+     * @var Collection<int, CoursePlan>
+     */
+    #[ORM\OneToMany(targetEntity: CoursePlan::class, mappedBy: 'owner', orphanRemoval: true)]
+    private Collection $coursePlans;
+
     public function __construct()
     {
         $this->syllabi = new ArrayCollection();
+        $this->coursePlans = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -107,6 +114,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($syllabus->getOwner() === $this) {
                 $syllabus->setOwner(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, CoursePlan>
+     */
+    public function getCoursePlans(): Collection
+    {
+        return $this->coursePlans;
+    }
+
+    public function addCoursePlan(CoursePlan $coursePlan): static
+    {
+        if (!$this->coursePlans->contains($coursePlan)) {
+            $this->coursePlans->add($coursePlan);
+            $coursePlan->setOwner($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCoursePlan(CoursePlan $coursePlan): static
+    {
+        if ($this->coursePlans->removeElement($coursePlan)) {
+            // set the owning side to null (unless already changed)
+            if ($coursePlan->getOwner() === $this) {
+                $coursePlan->setOwner(null);
             }
         }
 

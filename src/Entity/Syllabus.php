@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\SyllabusRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -29,6 +31,17 @@ class Syllabus
 
     #[ORM\Column(nullable: true)]
     private ?array $extractedCompetences = null;
+
+    /**
+     * @var Collection<int, CoursePlan>
+     */
+    #[ORM\OneToMany(targetEntity: CoursePlan::class, mappedBy: 'syllabus', orphanRemoval: true)]
+    private Collection $coursePlan;
+
+    public function __construct()
+    {
+        $this->coursePlan = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -91,6 +104,36 @@ class Syllabus
     public function setExtractedCompetences(?array $extractedCompetences): static
     {
         $this->extractedCompetences = $extractedCompetences;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, CoursePlan>
+     */
+    public function getCoursePlan(): Collection
+    {
+        return $this->coursePlan;
+    }
+
+    public function addCoursePlan(CoursePlan $coursePlan): static
+    {
+        if (!$this->coursePlan->contains($coursePlan)) {
+            $this->coursePlan->add($coursePlan);
+            $coursePlan->setSyllabus($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCoursePlan(CoursePlan $coursePlan): static
+    {
+        if ($this->coursePlan->removeElement($coursePlan)) {
+            // set the owning side to null (unless already changed)
+            if ($coursePlan->getSyllabus() === $this) {
+                $coursePlan->setSyllabus(null);
+            }
+        }
 
         return $this;
     }
