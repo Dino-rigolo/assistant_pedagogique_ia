@@ -35,57 +35,67 @@
         .left-section {
             flex: 1;
             background: #F3585C;
+            padding: 40px;
             color: white;
-            padding: 60px 40px;
             display: flex;
             flex-direction: column;
             justify-content: center;
-        }
-
-        .left-section h1 {
-            font-size: 2.5em;
-            margin-bottom: 20px;
-        }
-
-        .left-section p {
-            font-size: 1.1em;
-            opacity: 0.9;
-            line-height: 1.6;
-            margin-bottom: 10px;
         }
 
         .right-section {
             flex: 1;
-            padding: 60px 40px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
+            padding: 40px;
+            overflow-y: auto;
+        }
+
+        h1 {
+            font-size: 2.2em;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        .form-container {
+            display: none;
+        }
+
+        .form-container.active {
+            display: block;
+        }
+
+        h2 {
+            margin-bottom: 30px;
+            color: #333;
         }
 
         .form-group {
             margin-bottom: 20px;
         }
 
-        label {
+        .form-group label {
             display: block;
             margin-bottom: 8px;
             color: #333;
             font-weight: 500;
         }
 
-        input {
+        .form-group input {
             width: 100%;
-            padding: 12px 15px;
-            border: 2px solid #e0e0e0;
+            padding: 12px;
+            border: 1px solid #ddd;
             border-radius: 8px;
             font-size: 1em;
-            transition: all 0.3s;
+            transition: border-color 0.3s;
         }
 
-        input:focus {
+        .form-group input:focus {
             outline: none;
             border-color: #F3585C;
-            background-color: #FCF1EB;
+            box-shadow: 0 0 0 3px rgba(243, 88, 92, 0.1);
         }
 
         button {
@@ -95,19 +105,19 @@
             color: white;
             border: none;
             border-radius: 8px;
-            font-size: 1.1em;
+            font-size: 1em;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s;
-            margin-top: 20px;
+            transition: background 0.3s;
         }
 
         button:hover {
             background: #A30005;
         }
 
-        button:active {
-            transform: translateY(0);
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
         }
 
         .toggle-form {
@@ -118,63 +128,13 @@
 
         .toggle-form a {
             color: #F3585C;
-            font-weight: 600;
             cursor: pointer;
-            text-decoration: none;
-        }
-
-        .toggle-form a:hover {
             text-decoration: underline;
         }
 
-        .form-container {
-            display: none;
-        }
-
-        .form-container.active {
-            display: block;
-            animation: fadeIn 0.3s ease-in;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .loading {
-            display: none;
-            text-align: center;
-            color: #667eea;
-        }
-
-        .loading.show {
-            display: block;
-        }
-
-        .spinner {
-            border: 4px solid #f3f3f3;
-            border-top: 4px solid #667eea;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 10px;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        /* Alertes */
         .alert {
-            padding: 15px;
+            padding: 12px;
+            border-radius: 8px;
             margin-bottom: 20px;
             border-radius: 8px;
             display: none;
@@ -208,9 +168,29 @@
             border: 1px solid #f5c6cb;
         }
 
-        h2 {
-            margin-bottom: 30px;
-            color: #333;
+        .loading {
+            display: none;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .loading.show {
+            display: block;
+        }
+
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #F3585C;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 10px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
         @media (max-width: 768px) {
@@ -224,10 +204,10 @@
             }
 
             .right-section {
-                padding: 40px 20px;
+                padding: 30px 20px;
             }
 
-            .left-section h1 {
+            h1 {
                 font-size: 1.8em;
             }
         }
@@ -235,7 +215,6 @@
 </head>
 <body>
     <div class="container">
-        <!-- Côté gauche -->
         <div class="left-section">
             <h1>Assistant Pédagogique</h1>
             <p>Plateforme IA pour optimiser la préparation et la gestion de vos cours.</p>
@@ -246,12 +225,9 @@
             </p>
         </div>
 
-        <!-- Côté droit : Formulaires -->
         <div class="right-section">
-            <!-- Alerte -->
             <div id="alert" class="alert"></div>
 
-            <!-- Formulaire Login -->
             <div id="login-form" class="form-container active">
                 <h2>Se connecter</h2>
                 
@@ -277,7 +253,6 @@
                 </div>
             </div>
 
-            <!-- Formulaire Register -->
             <div id="register-form" class="form-container">
                 <h2>Créer un compte</h2>
                 
@@ -311,9 +286,8 @@
     </div>
 
     <script>
-        const API_URL = window.location.origin;  // ✅ Utilise le même protocole que la page
+        const API_URL = window.location.origin;
 
-        // Toggle entre les deux formulaires
         function toggleForms(form) {
             document.getElementById('login-form').classList.remove('active');
             document.getElementById('register-form').classList.remove('active');
@@ -321,13 +295,11 @@
             clearAlert();
         }
 
-        // Afficher une alerte
         function showAlert(message, type = 'success') {
             const alertDiv = document.getElementById('alert');
             alertDiv.textContent = message;
             alertDiv.className = `alert show alert-${type}`;
             
-            // Auto-masquer après 5 secondes
             setTimeout(() => {
                 alertDiv.classList.remove('show');
             }, 5000);
@@ -338,7 +310,6 @@
             alertDiv.classList.remove('show');
         }
 
-        // Gestion du Register
         async function handleRegister() {
             const email = document.getElementById('register-email').value.trim();
             const password = document.getElementById('register-password').value;
@@ -347,7 +318,6 @@
 
             clearAlert();
 
-            // Validation
             if (!email || !password) {
                 showAlert('❌ Veuillez remplir tous les champs', 'error');
                 return;
@@ -355,11 +325,6 @@
 
             if (password !== passwordConfirm) {
                 showAlert('❌ Les mots de passe ne correspondent pas', 'error');
-                return;
-            }
-
-            if (password.length < 6) {
-                showAlert('❌ Le mot de passe doit contenir au moins 6 caractères', 'error');
                 return;
             }
 
@@ -377,14 +342,8 @@
                 const data = await response.json();
 
                 if (response.ok) {
-                    showAlert('✅ Compte créé avec succès ! Veuillez vous connecter.', 'success');
+                    showAlert('✅ Compte créé avec succès ! Redirection...', 'success');
                     
-                    // Réinitialiser le formulaire
-                    document.getElementById('register-email').value = '';
-                    document.getElementById('register-password').value = '';
-                    document.getElementById('register-password-confirm').value = '';
-
-                    // Basculer vers le formulaire de login
                     setTimeout(() => {
                         toggleForms('login');
                     }, 2000);
@@ -399,7 +358,6 @@
             }
         }
 
-        // Gestion du Login
         async function handleLogin() {
             const email = document.getElementById('login-email').value.trim();
             const password = document.getElementById('login-password').value;
@@ -425,13 +383,12 @@
 
                 const data = await response.json();
 
-                // ✅ Stockage simplifié
                 if (response.ok) {
                     showAlert('✅ Connexion réussie ! Redirection...', 'success');
                     
-                    // Stockage simple
                     localStorage.setItem('user_email', email);
-                    localStorage.setItem('user_password', password);  // ✅ Stocke le password en clair (seulement en local dev)
+                    localStorage.setItem('user_password', password);
+                    localStorage.removeItem('auth_token');
                     
                     setTimeout(() => {
                         window.location.href = '/dashboard.html';
@@ -447,7 +404,6 @@
             }
         }
 
-        // Permettre l'entrée avec la touche Entrée
         document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('login-password').addEventListener('keypress', (e) => {
                 if (e.key === 'Enter') handleLogin();

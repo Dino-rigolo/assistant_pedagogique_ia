@@ -241,22 +241,16 @@
         let password = localStorage.getItem('user_password');
         let currentSyllabusId = null;
 
-        // Vérifier l'authentification
         if (!email || !password) {
             console.log('Pas connecté, redirection...');
             window.location.href = '/auth.html';
         } else {
-            console.log('✅ Connecté en tant que:', email);
-            // Charger les syllabus
+            console.log('Connecté en tant que:', email);
             loadSyllabi();
         }
 
-        // Charger les syllabus
         async function loadSyllabi() {
             try {
-                const email = localStorage.getItem('user_email');
-                const password = localStorage.getItem('user_password');
-                
                 const response = await fetch('/api/syllabi', {
                     headers: {
                         'Authorization': 'Basic ' + btoa(email + ':' + password)
@@ -289,17 +283,11 @@
             }
         }
 
-        // Importer un syllabus
         document.getElementById('syllabusForm').addEventListener('submit', async (e) => {
             e.preventDefault();
             const title = document.getElementById('syllabusTitle').value;
             const rawText = document.getElementById('syllabusText').value;
 
-            // ✅ Récupère les credentials du localStorage
-            const email = localStorage.getItem('user_email');
-            const password = localStorage.getItem('user_password');
-
-            // ✅ Vérification
             if (!email || !password) {
                 alert('❌ Vous devez être connecté pour importer un syllabus');
                 window.location.href = '/auth.html';
@@ -330,7 +318,6 @@
             }
         });
 
-        // Générer un plan
         function openGeneratePlanModal(syllabusId) {
             currentSyllabusId = syllabusId;
             document.getElementById('generatePlanModal').style.display = 'block';
@@ -343,9 +330,6 @@
         document.getElementById('generatePlanForm').addEventListener('submit', async (e) => {
             e.preventDefault();
             const nbSessions = document.getElementById('nbSessions').value;
-            
-            const email = localStorage.getItem('user_email');
-            const password = localStorage.getItem('user_password');
 
             try {
                 const response = await fetch('/api/ai/generate-course-plan', {
@@ -379,9 +363,6 @@
         async function deleteSyllabus(syllabusId) {
             if (!confirm('Êtes-vous sûr de vouloir supprimer ce syllabus ?')) return;
             try {
-                const email = localStorage.getItem('user_email');
-                const password = localStorage.getItem('user_password');
-                
                 const response = await fetch(`/api/syllabi/${syllabusId}`, {
                     method: 'DELETE',
                     headers: {
@@ -396,13 +377,15 @@
             }
         }
 
-        function goToDashboard() {
-            window.location.href = '/dashboard.html';
+        function navigateTo(page) {
+            if (page === 'dashboard') {
+                window.location.href = '/dashboard.html';
+            }
         }
 
         function logout() {
             localStorage.removeItem('user_email');
-            localStorage.removeItem('auth_token');
+            localStorage.removeItem('user_password');
             window.location.href = '/auth.html';
         }
     </script>
