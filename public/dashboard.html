@@ -15,34 +15,38 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            padding: 40px 20px;
         }
 
-        .dashboard {
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
             background: white;
             border-radius: 15px;
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
-            padding: 60px 40px;
-            max-width: 800px;
-            text-align: center;
+            padding: 40px;
+            margin-bottom: 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        h1 {
+        .header-content h1 {
             color: #333;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
         }
 
-        p {
+        .header-content p {
             color: #666;
-            margin-bottom: 30px;
-            font-size: 1.1em;
+            font-size: 1em;
         }
 
         .btn {
             display: inline-block;
-            padding: 12px 30px;
+            padding: 12px 25px;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             border: none;
@@ -57,30 +61,1135 @@
             transform: translateY(-2px);
             box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
         }
+
+        .btn-danger {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        .course-plan-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+
+        .course-plan-header {
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .course-plan-header h2 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 1.5em;
+        }
+
+        .course-plan-info {
+            display: flex;
+            gap: 30px;
+            color: #666;
+            font-size: 0.95em;
+        }
+
+        .sessions-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .session-card {
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 20px;
+            background: #f9f9f9;
+            transition: all 0.3s;
+        }
+
+        .session-card:hover {
+            border-color: #667eea;
+            background: #f5f7ff;
+        }
+
+        .session-card.done {
+            border-color: #4caf50;
+            background: #f1f8f4;
+        }
+
+        .session-status {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+
+        .status-icon {
+            font-size: 1.5em;
+        }
+
+        .status-icon.done {
+            color: #4caf50;
+        }
+
+        .status-icon.pending {
+            color: #ffa500;
+        }
+
+        .session-title {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .session-content {
+            color: #666;
+            font-size: 0.9em;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+
+        .session-notes {
+            background: white;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            font-size: 0.85em;
+            color: #555;
+            font-style: italic;
+            max-height: 80px;
+            overflow-y: auto;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-small {
+            padding: 8px 15px;
+            font-size: 0.9em;
+            flex: 1;
+        }
+
+        .btn-complete {
+            background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%);
+        }
+
+        .btn-edit {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+        }
+
+        .btn-exercises {
+            background: linear-gradient(135deg, #ffd89b 0%, #19547b 100%);
+        }
+
+        .btn-delete {
+            background: linear-gradient(135deg, #f5576c 0%, #f093fb 100%);
+            padding: 5px 10px;
+            font-size: 0.8em;
+        }
+
+        .btn-delete:hover {
+            opacity: 0.9;
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .btn:disabled:hover {
+            opacity: 0.5;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .exercises-section {
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+        }
+
+        .exercises-header {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 0.95em;
+        }
+
+        .exercises-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .exercise-card {
+            background: #f5f5f5;
+            border-left: 4px solid #ffd89b;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 0.85em;
+        }
+
+        .exercise-title {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 3px;
+        }
+
+        .exercise-difficulty {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 3px;
+            font-size: 0.75em;
+            font-weight: bold;
+            margin-right: 5px;
+        }
+
+        .difficulty-easy {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .difficulty-medium {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .difficulty-hard {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .exercise-duration {
+            color: #666;
+            font-size: 0.8em;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 30px;
+            border: 1px solid #888;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .modal-header {
+            margin-bottom: 20px;
+        }
+
+        .modal-header h2 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover {
+            color: black;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: inherit;
+            font-size: 1em;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .form-actions {
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+        }
+
+        .form-actions button {
+            padding: 10px 20px;
+        }
+
+        .loading {
+            text-align: center;
+            color: #666;
+            font-size: 1.1em;
+        }
+
+        .error-message {
+            background: #ffebee;
+            border: 1px solid #f5a6a6;
+            color: #c62828;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .success-message {
+            background: #e8f5e9;
+            border: 1px solid #81c784;
+            color: #2e7d32;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #e0e0e0;
+            border-radius: 10px;
+            margin-top: 10px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #4caf50, #84fab0);
+            border-radius: 10px;
+            transition: width 0.3s;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 40px;
+            color: #999;
+        }
+
+        .empty-state-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+
+        .session-details {
+            margin-top: 15px;
+            color: #333;
+            font-size: 0.95em;
+        }
+
+        .session-details h4 {
+            margin-top: 10px;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #444;
+        }
+
+        .session-details ul {
+            list-style-type: disc;
+            margin-left: 20px;
+            margin-bottom: 10px;
+        }
+
+        .session-details ul li {
+            margin-bottom: 5px;
+        }
     </style>
 </head>
 <body>
-    <div class="dashboard">
-        <h1>🎉 Bienvenue !</h1>
-        <p id="email-display"></p>
-        <p>Vous êtes maintenant connecté à l'Assistant Pédagogique.</p>
-        
-        <button class="btn" onclick="logout()">Se déconnecter</button>
+    <div class="container">
+        <div class="header">
+            <div class="header-content">
+                <h1>Assistant Pédagogique</h1>
+                <p id="email-display"></p>
+                <div style="margin-top: 15px;">
+                    <button class="btn" onclick="navigateTo('syllabus')" style="background: transparent; color: #667eea; border: 2px solid #667eea;">📚 Gestion des Syllabus</button>
+                    <button class="btn" onclick="navigateTo('dashboard')" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); margin-left: 10px;">📊 Dashboard</button>
+                </div>
+            </div>
+            <button class="btn btn-danger" onclick="logout()">Se déconnecter</button>
+        </div>
+
+        <div id="content">
+            <div class="loading">Chargement des cours...</div>
+        </div>
+    </div>
+
+    <!-- Modal pour marquer une séance comme complétée -->
+    <div id="completeModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeCompleteModal()">&times;</span>
+            <div class="modal-header">
+                <h2>Marquer comme complétée</h2>
+                <p id="sessionModalTitle" style="color: #666; margin: 0;"></p>
+            </div>
+            <form id="completeForm">
+                <div class="form-group">
+                    <label for="actualNotes">Notes / Observations :</label>
+                    <textarea id="actualNotes" placeholder="Décrivez ce qui s'est réellement passé durant cette séance..."></textarea>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn" onclick="closeCompleteModal()">Annuler</button>
+                    <button type="submit" class="btn">Marquer comme complétée</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal pour générer les exercices -->
+    <div id="exercisesModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeExercisesModal()">&times;</span>
+            <div class="modal-header">
+                <h2>Générer des exercices</h2>
+                <p id="exercisesSessionTitle" style="color: #666; margin: 0;"></p>
+            </div>
+            <form id="exercisesForm">
+                <div class="form-group">
+                    <label for="difficultySelect">Niveau de difficulté :</label>
+                    <select id="difficultySelect" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-size: 1em;">
+                        <option value="EASY">Facile</option>
+                        <option value="MEDIUM" selected>Moyen</option>
+                        <option value="HARD">Difficile</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="exerciseCountSelect">Nombre d'exercices à générer :</label>
+                    <select id="exerciseCountSelect" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-size: 1em;">
+                        <option value="1">1 exercice</option>
+                        <option value="2">2 exercices</option>
+                        <option value="3" selected>3 exercices</option>
+                        <option value="4">4 exercices</option>
+                        <option value="5">5 exercices</option>
+                        <option value="6">6 exercices</option>
+                        <option value="7">7 exercices</option>
+                        <option value="8">8 exercices</option>
+                        <option value="9">9 exercices</option>
+                        <option value="10">10 exercices</option>
+                    </select>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn" onclick="closeExercisesModal()">Annuler</button>
+                    <button type="submit" class="btn">Générer les exercices</button>
+                </div>
+            </form>
+        </div>
     </div>
 
     <script>
+        // ✅ Lecture simplifiée
         const email = localStorage.getItem('user_email');
-        
-        if (!email) {
+        const password = localStorage.getItem('user_password');
+
+        // Vérification
+        if (!email || !password) {
+            console.log('Pas de session trouvée, redirection vers auth');
             window.location.href = '/auth.html';
         } else {
+            console.log('✅ Session trouvée pour:', email);
             document.getElementById('email-display').textContent = `Connecté en tant que : ${email}`;
         }
 
+        let currentSessionId = null;
+        let currentCoursePlanId = null;
+        
+        async function loadCoursePlans() {
+            try {
+                const response = await fetch('/api/course_plans', {
+                    headers: {
+                        'Authorization': 'Basic ' + btoa(email + ':' + password)
+                    }
+                });
+
+                if (!response.ok) {
+                    throw new Error('Erreur lors du chargement des cours');
+                }
+
+                const data = await response.json();
+                const plans = Array.isArray(data) ? data : (data['member'] || data['member'] || []);
+
+                if (plans.length === 0) {
+                    document.getElementById('content').innerHTML = `
+                        <div class="course-plan-card">
+                            <div class="empty-state">
+                                <div class="empty-state-icon"></div>
+                                <p>Aucun cours n'a été créé.</p>
+                                <p style="margin-top: 10px; font-size: 0.9em;">Utilisez l'API pour générer un plan de cours à l'aide de l'IA.</p>
+                            </div>
+                        </div>
+                    `;
+                    return;
+                }
+
+                let html = '';
+                for (const plan of plans) {
+                    html += await renderCoursePlan(plan);
+                }
+                document.getElementById('content').innerHTML = html;
+            } catch (error) {
+                document.getElementById('content').innerHTML = `
+                    <div class="error-message">
+                        ❌ ${error.message}
+                    </div>
+                `;
+            }
+        }
+
+        async function renderCoursePlan(plan) {
+            try {
+                // Récupérer les sessions du plan
+                const sessionsResponse = await fetch(`/api/sessions?courseplan=${plan.id}`, {
+                    headers: {
+                        'Authorization': 'Basic ' + btoa(email + ':' + password)
+                    }
+                });
+
+                let sessions = [];
+                if (sessionsResponse.ok) {
+                    const sessionsData = await sessionsResponse.json();
+                    sessions = Array.isArray(sessionsData) ? sessionsData : (sessionsData['member'] || sessionsData['member'] || []);
+                    sessions.sort((a, b) => a.indexNumber - b.indexNumber);
+                }
+
+                const totalSessions = sessions.length;
+                const doneSessions = sessions.filter(s => s.done).length;
+                const progressPercent = totalSessions > 0 ? (doneSessions / totalSessions) * 100 : 0;
+
+                let html = `
+                    <div class="course-plan-card" id="course-plan-${plan.id}">
+                        <div class="course-plan-header">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                                <h2>${plan.title}</h2>
+                                <button class="btn btn-delete" onclick="deleteCoursePlan(${plan.id})">Supprimer le cours</button>
+                            </div>
+                            <div class="course-plan-info">
+                                <div>${doneSessions}/${totalSessions} séances complétées</div>
+                                <div>${plan.expectedTotalHours}h prévues</div>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: ${progressPercent}%"></div>
+                            </div>
+                        </div>
+                        <div class="sessions-container">
+                `;
+
+
+                if (sessions.length === 0) {
+                    html += `
+                        <div style="grid-column: 1/-1; text-align: center; color: #999; padding: 20px;">
+                            Aucune séance n'a été créée pour ce cours.
+                        </div>
+                    `;
+                } else {
+                    for (const session of sessions) {
+                        const statusIcon = session.done ? '✓' : '⏳';
+                        const statusClass = session.done ? 'done' : 'pending';
+                        const statusColor = session.done ? '#4caf50' : '#ffa500';
+
+                        html += `
+                            <div class="session-card ${statusClass}" id="session-card-${session.id}">
+                                <div class="session-status">
+                                    <span class="status-icon ${statusClass}"></span>
+                                    <span>${session.done ? 'Complétée' : 'À faire'}</span>
+                                </div>
+                                <div class="session-title">${session.indexNumber}. ${session.title}</div>
+                                <div style="text-align: right; margin-bottom: 10px;">
+                                    <button class="btn btn-delete" onclick="deleteSession(${session.id})">Supprimer</button>
+                                </div>
+                                <div class="session-content">
+                                    ${session.objectives ? '<strong>Objectifs :</strong><br>' + formatJson(session.objectives).substring(0, 100) + '...' : ''}
+                                </div>
+                        `;
+
+                        if (session.actualNotes) {
+                            html += `
+                                <div class="session-notes">
+                                    <strong>Notes :</strong><br>${session.actualNotes}
+                                </div>
+                            `;
+                        }
+
+                        html += `
+                                <div class="action-buttons">
+                        `;
+
+                        if (!session.done) {
+                            html += `
+                                <button class="btn btn-small btn-complete" onclick="openCompleteModal(${session.id}, '${session.title}', false, ${plan.id})">
+                                    Marquer comme faite
+                                </button>
+                            `;
+                        } else {
+                            html += `
+                                <button class="btn btn-small btn-edit" onclick="openCompleteModal(${session.id}, '${session.title}', true, ${plan.id})">
+                                    Modifier les notes
+                                </button>
+                            `;
+                        }
+
+                        // Bouton Générer exercices
+                        html += `
+                            <button class="btn btn-small btn-exercises" onclick="openExercisesModal(${session.id}, '${session.title}')">
+                                Générer exercices
+                            </button>
+                        `;
+
+                        html += `
+                                </div>
+                                <div class="exercises-section" id="exercises-section-${session.id}">
+                                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                                        <div class="exercises-header">Exercices</div>
+                                        <button class="btn btn-delete" style="padding: 5px 10px; font-size: 0.8em;" onclick="deleteAllExercises(${session.id})">Supprimer tous</button>
+                                    </div>
+                                    <div class="exercises-list" id="exercises-list-${session.id}">
+                                        <div class="loading">Chargement des exercices...</div>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                    }
+                }
+
+                html += `
+                        </div>
+                    </div>
+                `;
+
+                return html;
+            } catch (error) {
+                return `<div class="error-message">Erreur lors du chargement du cours: ${error.message}</div>`;
+            }
+        }
+
+        function formatJson(json) {
+            if (typeof json === 'string') {
+                try {
+                    json = JSON.parse(json);
+                } catch {
+                    return json;
+                }
+            }
+            if (Array.isArray(json)) {
+                return json.join(', ');
+            }
+            return JSON.stringify(json);
+        }
+
+        function openCompleteModal(sessionId, sessionTitle, isEdit = false, coursePlanId = null) {
+            currentSessionId = sessionId;
+            currentCoursePlanId = coursePlanId;
+            document.getElementById('sessionModalTitle').textContent = sessionTitle;
+            document.getElementById('actualNotes').value = '';
+            
+            if (isEdit) {
+                // Charger les notes existantes
+                fetch(`/api/sessions/${sessionId}`, {
+                    headers: {
+                        'Authorization': 'Basic ' + btoa(email + ':' + password)
+                    }
+                })
+                .then(r => r.json())
+                .then(session => {
+                    document.getElementById('actualNotes').value = session.actualNotes || '';
+                    document.getElementById('completeModal').style.display = 'block';
+                });
+            } else {
+                document.getElementById('completeModal').style.display = 'block';
+            }
+        }
+
+        function closeCompleteModal() {
+            document.getElementById('completeModal').style.display = 'none';
+            currentSessionId = null;
+        }
+
+        document.getElementById('completeForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const actualNotes = document.getElementById('actualNotes').value;
+            
+            try {
+                // Étape 1 : Marquer la séance comme complétée
+                const response = await fetch(`/api/sessions/${currentSessionId}/complete`, {
+                    method: 'PATCH',
+                    headers: {
+                        'Authorization': 'Basic ' + btoa(email + ':' + password),
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        done: true,
+                        actualNotes: actualNotes
+                    })
+                });
+
+                if (!response.ok) {
+                    const error = await response.json();
+                    throw new Error(error.detail || 'Erreur lors de la sauvegarde');
+                }
+
+                // Étape 2 : Appeler l'IA pour adapter les séances suivantes (si on a le coursePlanId)
+                if (currentCoursePlanId) {
+                    try {
+                        const adaptResponse = await fetch('/api/ai/update-course-plan', {
+                            method: 'POST',
+                            headers: {
+                                'Authorization': 'Basic ' + btoa(email + ':' + password),
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({
+                                coursePlanId: currentCoursePlanId,
+                                sessionId: currentSessionId
+                            })
+                        });
+
+                        if (adaptResponse.ok) {
+                            const adaptData = await adaptResponse.json();
+                            console.log('Séances adaptées :', adaptData);
+                            
+                            // Afficher les adaptations
+                            if (adaptData.adaptations?.gap_summary) {
+                                alert('Séance complétée !\n\nAnalyse IA :\n' + adaptData.adaptations.gap_summary);
+                            } else {
+                                alert('Séance complétée !');
+                            }
+                        }
+                    } catch (adaptError) {
+                        console.warn('Adaptation IA non disponible :', adaptError.message);
+                        alert('Séance complétée ! (Adaptation IA en erreur)');
+                    }
+                } else {
+                    alert('Séance complétée !');
+                }
+
+                closeCompleteModal();
+                await loadCoursePlans();
+            } catch (error) {
+                alert('Erreur : ' + error.message);
+            }
+        });
+
         function logout() {
             localStorage.removeItem('user_email');
+            localStorage.removeItem('user_password');
             window.location.href = '/auth.html';
         }
+
+        // Gestion du modal d'exercices
+        function openExercisesModal(sessionId, sessionTitle) {
+            currentSessionId = sessionId;
+            document.getElementById('exercisesSessionTitle').textContent = sessionTitle;
+            document.getElementById('exercisesModal').style.display = 'block';
+        }
+
+        function closeExercisesModal() {
+            document.getElementById('exercisesModal').style.display = 'none';
+            currentSessionId = null;
+            
+            // Nettoyer le formulaire
+            const form = document.getElementById('exercisesForm');
+            const submitButton = form.querySelector('button[type="submit"]');
+            
+            // Réinitialiser le bouton
+            submitButton.disabled = false;
+            submitButton.textContent = 'Générer les exercices';
+            submitButton.style.opacity = '1';
+            
+            // Supprimer le message de statut s'il existe
+            const statusDiv = document.getElementById('generation-status');
+            if (statusDiv) {
+                statusDiv.remove();
+            }
+            
+            // Réinitialiser les selects
+            document.getElementById('difficultySelect').value = 'MEDIUM';
+            document.getElementById('exerciseCountSelect').value = '3';
+        }
+
+        document.getElementById('exercisesForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const difficulty = document.getElementById('difficultySelect').value;
+            const count = document.getElementById('exerciseCountSelect').value;
+            const submitButton = e.target.querySelector('button[type="submit"]');
+            
+            if (!currentSessionId) return;
+            
+            try {
+                // AVANT tout, sauvegarde le sessionId
+                const sessionIdToLoad = currentSessionId;
+                
+                // Désactiver le bouton et afficher le loader
+                submitButton.disabled = true;
+                submitButton.textContent = 'Génération en cours...';
+                submitButton.style.opacity = '0.6';
+                
+                // Afficher un message dans le formulaire
+                const formGroup = document.querySelector('#exercisesForm .form-group');
+                const statusDiv = document.createElement('div');
+                statusDiv.id = 'generation-status';
+                statusDiv.style.cssText = 'text-align: center; color: #667eea; font-weight: bold; margin: 15px 0; padding: 15px; background: #f0f4ff; border-radius: 5px;';
+                statusDiv.textContent = '⏳ Génération en cours... Veuillez patienter.';
+                formGroup.parentNode.insertBefore(statusDiv, formGroup.nextSibling);
+                
+                // Appel API pour générer les exercices
+                const response = await fetch('/api/ai/generate-exercises', {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': 'Basic ' + btoa(email + ':' + password),
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ sessionId: sessionIdToLoad, difficulty, count: parseInt(count) })
+                });
+                
+                if (!response.ok) {
+                    const error = await response.json();
+                    throw new Error(error.detail || 'Erreur lors de la génération des exercices');
+                }
+                
+                // Changement du message après réponse API
+                const status = document.getElementById('generation-status');
+                if (status) {
+                    status.textContent = '✅ Exercices générés ! Fermeture automatique en quelques secondes...';
+                    status.style.color = '#4caf50';
+                }
+                
+                // Attendre 3s que le backend génère et persiste tous les exercices, puis fermer
+                console.log(`Exercices générés pour session ${sessionIdToLoad}, attente de 3s avant fermeture...`);
+                
+                let waitTime = 3;
+                const waitInterval = setInterval(() => {
+                    const status = document.getElementById('generation-status');
+                    if (status) {
+                        status.textContent = `✅ Exercices générés ! Fermeture dans ${waitTime}s...`;
+                    }
+                    
+                    if (waitTime <= 0) {
+                        clearInterval(waitInterval);
+                        console.log(`Fermeture du modal et rechargement complet du dashboard...`);
+                        closeExercisesModal();
+                        loadCoursePlans();
+                    }
+                    waitTime--;
+                }, 1000);
+                
+            } catch (error) {
+                // Restaurer le bouton en cas d'erreur
+                submitButton.disabled = false;
+                submitButton.textContent = 'Générer les exercices';
+                submitButton.style.opacity = '1';
+                
+                // Afficher l'erreur dans le modal au lieu d'un alert
+                const status = document.getElementById('generation-status');
+                if (status) {
+                    status.textContent = '❌ Erreur : ' + error.message;
+                    status.style.color = '#f5576c';
+                    status.style.background = '#ffe8eb';
+                } else {
+                    alert('❌ ' + error.message);
+                }
+            }
+        });
+
+        // Fonction pour charger les exercices d'une session
+        async function loadExercisesForSession(sessionId) {
+            console.log(`=== DEBUT loadExercisesForSession(${sessionId}) ===`);
+            
+            const exercisesList = document.getElementById('exercises-list-' + sessionId);
+            console.log(`Cherche élément: exercises-list-${sessionId}`);
+            console.log(`Élément trouvé:`, exercisesList);
+            
+            if (!exercisesList) {
+                console.warn(`⚠️ Élément exercises-list-${sessionId} introuvable!`);
+                return;
+            }
+            
+            exercisesList.innerHTML = '<div class="loading">Chargement des exercices...</div>';
+            
+            const startTime = Date.now();
+            
+            try {
+                console.log(`Appel API: /api/exercises?session=${sessionId}`);
+                const response = await fetch(`/api/exercises?session=${sessionId}`, {
+                    headers: {
+                        'Authorization': 'Basic ' + btoa(email + ':' + password)
+                    }
+                });
+                
+                const elapsedTime = Date.now() - startTime;
+                console.log(`Réponse API reçue en ${elapsedTime}ms pour la session ${sessionId}`);
+                
+                if (!response.ok) {
+                    console.error('Erreur API:', response.status, response.statusText);
+                    throw new Error(`Erreur ${response.status}: ${response.statusText}`);
+                }
+                
+                const data = await response.json();
+                console.log('Données des exercices:', data);
+                
+                const exercises = Array.isArray(data) ? data : (data['member'] || []);
+                console.log(`Nombre d'exercices trouvés: ${exercises.length}`);
+                
+                if (exercises.length === 0) {
+                    console.log('Aucun exercice, affichage du message');
+                    exercisesList.innerHTML = '<div style="color:#999;">Aucun exercice pour cette séance.</div>';
+                    // Désactiver le bouton "Supprimer tous"
+                    const deleteBtn = document.querySelector(`#exercises-section-${sessionId} .btn-delete`);
+                    if (deleteBtn) {
+                        deleteBtn.disabled = true;
+                    }
+                } else {
+                    console.log('Affichage de', exercises.length, 'exercices');
+                    // Activer le bouton "Supprimer tous"
+                    const deleteBtn = document.querySelector(`#exercises-section-${sessionId} .btn-delete`);
+                    if (deleteBtn) {
+                        deleteBtn.disabled = false;
+                    }
+                    const htmlContent = exercises.map(ex => {
+                        console.log(`- Exercice: ${ex.title} (id: ${ex.id}, difficulty: ${ex.difficulty})`);
+                        return `
+                        <div class="exercise-card" id="exercise-${ex.id}">
+                            <div style="display: flex; justify-content: space-between; align-items: start;">
+                                <div>
+                                    <div class="exercise-title">${ex.title || 'Exercice'}</div>
+                                    <span class="exercise-difficulty difficulty-${(ex.difficulty || '').toLowerCase()}">${ex.difficulty || ''}</span>
+                                    <span class="exercise-duration">${ex.expectedDurationMinutes ? ex.expectedDurationMinutes + ' min' : ''}</span>
+                                </div>
+                                <button class="btn btn-delete" style="padding: 8px; min-width: auto;" onclick="deleteExercise(${ex.id})" title="Supprimer cet exercice">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+                                        <path d="M4 7h16m-10 4v6m4-6v6M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2l1-12M9 7V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v3" />
+                                    </svg>
+                                </button>
+                            </div>
+                            <div style="color: #666; font-size: 0.85em; margin-top: 8px;">${ex.instruction ? ex.instruction.substring(0, 100) + '...' : 'Pas de description'}</div>
+                        </div>
+                    `;
+                    }).join('');
+                    
+                    console.log('HTML généré, longueur:', htmlContent.length);
+                    exercisesList.innerHTML = htmlContent;
+                    console.log('✅ Contenu assigné à exercisesList');
+                }
+                
+                console.log(`=== FIN loadExercisesForSession(${sessionId}) ===`);
+            } catch (error) {
+                console.error('Erreur lors du chargement des exercices:', error);
+                exercisesList.innerHTML = `<div class="error-message">Erreur : ${error.message}</div>`;
+                console.log(`=== FIN (ERREUR) loadExercisesForSession(${sessionId}) ===`);
+            }
+        }
+
+        // Surcharge de loadCoursePlans pour charger les exercices après affichage des sessions
+        const originalLoadCoursePlans = loadCoursePlans;
+        loadCoursePlans = async function() {
+            await originalLoadCoursePlans();
+            // Charger les exercices pour chaque session affichée
+            const sessionCards = document.querySelectorAll('[id^="session-card-"]');
+            for (const card of sessionCards) {
+                const sessionId = card.id.replace('session-card-', '');
+                await loadExercisesForSession(sessionId);
+            }
+        };
+
+        // Fonction pour supprimer une session
+        async function deleteSession(sessionId) {
+            if (!confirm('Êtes-vous sûr de vouloir supprimer cette séance ? Cette action est irréversible.')) {
+                return;
+            }
+            try {
+                // Animation immédiate de suppression
+                const element = document.getElementById('session-card-' + sessionId);
+                if (element) {
+                    element.style.opacity = '0';
+                    element.style.transition = 'opacity 0.3s';
+                    element.style.pointerEvents = 'none';
+                }
+                
+                const response = await fetch(`/api/sessions/${sessionId}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'Authorization': 'Basic ' + btoa(email + ':' + password)
+                    }
+                });
+                if (!response.ok) {
+                    throw new Error('Erreur lors de la suppression');
+                }
+                // Attendre un peu avant de recharger pour une meilleure UX
+                setTimeout(() => loadCoursePlans(), 300);
+            } catch (error) {
+                // Restaurer en cas d'erreur
+                const element = document.getElementById('session-card-' + sessionId);
+                if (element) {
+                    element.style.opacity = '1';
+                    element.style.pointerEvents = 'auto';
+                }
+                alert('Erreur : ' + error.message);
+            }
+        }
+
+        // Fonction pour supprimer un exercice
+        async function deleteExercise(exerciseId) {
+            if (!confirm('Êtes-vous sûr de vouloir supprimer cet exercice ?')) {
+                return;
+            }
+            try {
+                const response = await fetch(`/api/exercises/${exerciseId}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'Authorization': 'Basic ' + btoa(email + ':' + password)
+                    }
+                });
+                if (!response.ok) {
+                    throw new Error('Erreur lors de la suppression');
+                }
+                // Animer la suppression
+                const element = document.getElementById('exercise-' + exerciseId);
+                if (element) {
+                    element.style.opacity = '0';
+                    element.style.transition = 'opacity 0.3s';
+                    setTimeout(() => element.remove(), 300);
+                }
+                alert('Exercice supprimé !');
+            } catch (error) {
+                alert('Erreur : ' + error.message);
+            }
+        }
+
+        // Fonction pour supprimer TOUS les exercices d'une session
+        async function deleteAllExercises(sessionId) {
+            if (!confirm('Êtes-vous sûr de vouloir supprimer TOUS les exercices de cette séance ? Cette action est irréversible.')) {
+                return;
+            }
+            try {
+                console.log(`Suppression de tous les exercices de la session ${sessionId}...`);
+                
+                // Récupérer tous les exercices de la session
+                const response = await fetch(`/api/exercises?session=${sessionId}`, {
+                    headers: {
+                        'Authorization': 'Basic ' + btoa(email + ':' + password)
+                    }
+                });
+                
+                if (!response.ok) {
+                    throw new Error('Erreur lors du chargement des exercices');
+                }
+                
+                const data = await response.json();
+                const exercises = Array.isArray(data) ? data : (data['member'] || []);
+                
+                console.log(`${exercises.length} exercices trouvés à supprimer`);
+                
+                // Supprimer tous les exercices en parallèle
+                const deletePromises = exercises.map(ex => 
+                    fetch(`/api/exercises/${ex.id}`, {
+                        method: 'DELETE',
+                        headers: {
+                            'Authorization': 'Basic ' + btoa(email + ':' + password)
+                        }
+                    })
+                );
+                
+                const results = await Promise.all(deletePromises);
+                const successCount = results.filter(r => r.ok).length;
+                
+                console.log(`${successCount}/${exercises.length} exercices supprimés avec succès`);
+                
+                alert(`${successCount} exercice(s) supprimé(s) !`);
+                
+                // Recharger la liste
+                await loadExercisesForSession(sessionId);
+            } catch (error) {
+                console.error('Erreur lors de la suppression des exercices:', error);
+                alert('Erreur : ' + error.message);
+            }
+        }
+
+        // Fonction pour supprimer un plan de cours
+        async function deleteCoursePlan(coursePlanId) {
+            if (!confirm('Êtes-vous sûr de vouloir supprimer ce plan de cours ? Toutes les séances et exercices seront aussi supprimés. Cette action est irréversible.')) {
+                return;
+            }
+            try {
+                // Animation immédiate de suppression
+                const element = document.getElementById('course-plan-' + coursePlanId);
+                if (element) {
+                    element.style.opacity = '0';
+                    element.style.transition = 'opacity 0.3s';
+                    element.style.pointerEvents = 'none';
+                }
+                
+                const response = await fetch(`/api/course_plans/${coursePlanId}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'Authorization': 'Basic ' + btoa(email + ':' + password)
+                    }
+                });
+                if (!response.ok) {
+                    throw new Error('Erreur lors de la suppression');
+                }
+                // Attendre un bit avant de recharger
+                setTimeout(() => loadCoursePlans(), 300);
+            } catch (error) {
+                // Restaurer en cas d'erreur
+                const element = document.getElementById('course-plan-' + coursePlanId);
+                if (element) {
+                    element.style.opacity = '1';
+                    element.style.pointerEvents = 'auto';
+                }
+                alert('Erreur : ' + error.message);
+            }
+        }
+
+        // Ajouter en haut du dashboard
+        function navigateTo(page) {
+            if (page === 'syllabus') {
+                window.location.href = '/syllabus.html';
+            } else if (page === 'dashboard') {
+                window.location.href = '/dashboard.html';
+            }
+        }
+
+        // Modifier le header pour ajouter les onglets
+        document.querySelector('.header').innerHTML = `
+            <div class="header-content">
+                <h1>Assistant Pédagogique</h1>
+                <p id="email-display"></p>
+                <div style="margin-top: 15px;">
+                    <button class="btn" onclick="navigateTo('syllabus')" style="background: transparent; color: #667eea; border: 2px solid #667eea;">📚 Gestion des Syllabus</button>
+                    <button class="btn" onclick="navigateTo('dashboard')" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); margin-left: 10px;">📊 Dashboard</button>
+                </div>
+            </div>
+            <button class="btn btn-danger" onclick="logout()">Se déconnecter</button>
+        `;
+
+        // Charger les cours au démarrage
+        loadCoursePlans();
     </script>
 </body>
 </html>

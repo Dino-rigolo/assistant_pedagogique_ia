@@ -37,7 +37,7 @@ class Session
     private ?array $resources = null;
 
     #[ORM\Column]
-    private ?bool $done = null;
+    private ?bool $done = false;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $actualNotes = null;

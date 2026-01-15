@@ -44,7 +44,7 @@ security:
         - { path: ^/api$, roles: PUBLIC_ACCESS }
 
         # Routes protégées : doivent avoir un JWT valide
-        - { path: ^/api/syllabuses, roles: ROLE_TEACHER }
+        - { path: ^/api/syllabi, roles: ROLE_TEACHER }
         - { path: ^/api/course_plans, roles: ROLE_TEACHER }
         - { path: ^/api/sessions, roles: ROLE_TEACHER }
         - { path: ^/api/ai/, roles: ROLE_TEACHER }

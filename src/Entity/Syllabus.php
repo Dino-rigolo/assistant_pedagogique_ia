@@ -11,6 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 #[ApiResource]
 #[ORM\Entity(repositoryClass: SyllabusRepository::class)]
+#[ORM\HasLifecycleCallbacks]
 class Syllabus
 {
     #[ORM\Id]
@@ -25,7 +26,7 @@ class Syllabus
     private ?string $rawText = null;
 
     #[ORM\ManyToOne(inversedBy: 'syllabi')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true)]
     private ?User $owner = null;
 
     #[ORM\Column]
@@ -43,6 +44,15 @@ class Syllabus
     public function __construct()
     {
         $this->coursePlan = new ArrayCollection();
+        $this->createdAt = new \DateTimeImmutable();
+    }
+
+    #[ORM\PrePersist]
+    public function ensureCreatedAt(): void
+    {
+        if ($this->createdAt === null) {
+            $this->createdAt = new \DateTimeImmutable();
+        }
     }
 
     public function getId(): ?int

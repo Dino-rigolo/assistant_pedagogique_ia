@@ -426,9 +426,13 @@
 
                 const data = await response.json();
 
+                // ✅ Stockage simplifié
                 if (response.ok) {
                     showAlert('✅ Connexion réussie ! Redirection...', 'success');
+                    
+                    // Stockage simple
                     localStorage.setItem('user_email', email);
+                    localStorage.setItem('user_password', password);  // ✅ Stocke le password en clair (seulement en local dev)
                     
                     setTimeout(() => {
                         window.location.href = '/dashboard.html';
